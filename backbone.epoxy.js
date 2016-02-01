@@ -29,8 +29,8 @@
   var isFunction = _.isFunction;
   var isObject = _.isObject;
   var isArray = _.isArray;
-  var isModel = function(obj) { return obj instanceof Backbone.Model; };
-  var isCollection = function(obj) { return obj instanceof Backbone.Collection; };
+  var isModel = function(obj) { return obj instanceof Backbone.Model || (Nested) ? obj instanceof Nested.Model : false; };
+  var isCollection = function(obj) { return obj instanceof Backbone.Collection || (Nested) ? obj instanceof Nested.Collection : false; };
   var blankMethod = function() {};
 
   // Static mixins API:
@@ -587,7 +587,7 @@
         if ($element.length > 1) {
           $element = $element.filter('[value="'+ value +'"]');
         }
-        
+
         // Default as loosely-typed boolean:
         var checked = !!value;
 
@@ -780,7 +780,7 @@
         if ($element[0].selectedIndex < 0 && $element.children().length) {
           $element[0].selectedIndex = 0;
         }
-        
+
         // Pull revised value with new options selection state:
         var revisedValue = $element.val();
 
